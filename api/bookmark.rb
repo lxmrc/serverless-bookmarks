@@ -26,7 +26,7 @@ class Editor
   def update_file(file, message, content)
     last_commit_sha = last_commit         # get last commit
     last_tree = tree_for(last_commit_sha) # get base tree
-    content = get_file_contents(file) + "\n#{content}"
+    content = get_file_contents(file) + "#{content}"
     tree_sha = create_tree(file, content, last_tree) # create new tree
     new_commit_sha = create_commit(message, tree_sha, last_commit_sha) # create new commit
     update_branch(new_commit_sha) # update reference
@@ -79,7 +79,7 @@ Handler = Proc.new do |req, res|
   - title: #{title}
     url: #{url}
   YAML
-  editor.update_file('_data/bookmarks.yml', 'Add bookmark', "\n#{yaml}")
+  editor.update_file('_data/bookmarks.yml', 'Add bookmark', "#{yaml}")
   res.status = 200
   res['Access-Control-Allow-Origin'] = '*'
 end
