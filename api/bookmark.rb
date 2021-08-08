@@ -73,8 +73,9 @@ end
 editor = Editor.new('lxmrc/serverless-bookmarks')
 
 Handler = Proc.new do |req, res|
+  title = req.query["title"]
   url = req.query["url"]
-  editor.update_file('test.md', 'Update test.md', "\n#{url}")
+  editor.update_file('test.md', 'Update test.md', "\n[#{title}](#{url})")
   res.status = 200
   res['Access-Control-Allow-Origin'] = '*'
 end
