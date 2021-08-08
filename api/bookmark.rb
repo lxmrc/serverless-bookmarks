@@ -4,6 +4,7 @@ require 'json'
 
 class Editor
   include HTTParty
+  debug_output $stdout
 
   attr_accessor :repo, :branch, :author
 
