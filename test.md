@@ -1,1 +1,1 @@
-Hello from Ruby.
+SGVsbG8gZnJvbSBSdWJ5LgpTWFFnZDI5eWEyVmtJSE52YldVZ2JXOXlaU0U9
