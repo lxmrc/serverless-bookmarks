@@ -1,1 +1,1 @@
-It worked!
+Hello from Ruby.
