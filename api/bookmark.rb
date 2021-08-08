@@ -70,12 +70,16 @@ class Editor
   end
 end
 
-editor = Editor.new('lxmrc/serverless-bookmarks')
+editor = Editor.new('lxmrc/lxmrc.com')
 
 Handler = Proc.new do |req, res|
   title = req.query["title"]
   url = req.query["url"]
-  editor.update_file('test.md', 'Update test.md', "\n[#{title}](#{url})")
+  yaml = <<~YAML
+  - title: #{title}
+    url: #{url}
+  YAML
+  editor.update_file('_data/bookmarks.yml', 'Add bookmark', "\n#{yaml}")
   res.status = 200
   res['Access-Control-Allow-Origin'] = '*'
 end
