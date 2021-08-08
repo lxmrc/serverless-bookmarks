@@ -1,7 +1,10 @@
+require_relative 'api/editor' 
+
+editor = Editor.new('lxmrc/serverless-bookmarks')
+
 Handler = Proc.new do |req, res|
-  res.status = 200
-  res['Content-Type'] = 'text/html; charset=utf-8'
-  res['Access-Control-Allow-Origin'] = '*'
   url = req.query["url"]
-  res.body = url
+  editor.update_file('test.md', 'Update test.md', "\n#{url}")
+  res.status = 200
+  res['Access-Control-Allow-Origin'] = '*'
 end
