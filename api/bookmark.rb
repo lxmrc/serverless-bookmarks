@@ -1,9 +1,6 @@
-require 'cowsay'
-
 Handler = Proc.new do |req, res|
-  name = req.query['name'] || 'World'
-
+  url = req.query["url"]
+  # editor.update_file('test.md', 'Update test.md', "\n#{url}")
   res.status = 200
-  res['Content-Type'] = 'text/text; charset=utf-8'
-  res.body = Cowsay.say("Hello #{name}", 'cow')
+  res['Access-Control-Allow-Origin'] = '*'
 end
