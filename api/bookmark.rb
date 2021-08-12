@@ -74,6 +74,7 @@ editor = Editor.new("lxmrc/lxmrc.com")
 
 Handler = Proc.new do |req, res|
   if req.query["key"] == ENV['KEY']
+    puts "OI LOOK OVER HERE MITE: #{ENV['KEY']}"
     title = req.query["title"]
     url = req.query["url"]
     list = req.query["list"]
