@@ -73,14 +73,18 @@ end
 editor = Editor.new("lxmrc/lxmrc.com")
 
 Handler = Proc.new do |req, res|
-  title = req.query["title"]
-  url = req.query["url"]
-  list = req.query["list"]
-  yaml = <<~YAML
-  - title: #{title}
-    url: #{url}
-  YAML
-  editor.update_file("_data/#{list}.yml", "Add bookmark", "#{yaml}")
-  res.status = 200
-  res["Access-Control-Allow-Origin"] = "*"
+  if req.query["key"] == ENV['KEY']
+    title = req.query["title"]
+    url = req.query["url"]
+    list = req.query["list"]
+    yaml = <<~YAML
+    - title: "#{title}"
+      url: #{url}
+    YAML
+    res.status = 200
+    res["Access-Control-Allow-Origin"] = "*"
+    editor.update_file("_data/#{list}.yml", "Add bookmark", "#{yaml}")
+  else
+    res.status = 401
+  end
 end
